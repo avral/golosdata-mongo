@@ -6,7 +6,7 @@ from pymongo.errors import ConnectionFailure
 
 MONGO_HOST = 'localhost'
 MONGO_PORT = 27017
-DB_NAME = 'SteemData'
+DB_NAME = 'testdb'
 
 
 class MongoStorage(object):

@@ -2,6 +2,7 @@ import getopt
 import sys
 
 from runner import run_worker
+from tasks import override_steemd
 
 
 def start_worker(argv):
@@ -38,5 +39,8 @@ def start_worker(argv):
 
 
 if __name__ == "__main__":
+    # For golos.io node
+    override_steemd()
+
     print("Starting worker: %s" % sys.argv)
     start_worker(sys.argv[1:])

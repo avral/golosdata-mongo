@@ -6,6 +6,7 @@ from funcy.seqs import flatten
 from pymongo.errors import DuplicateKeyError
 from steem import Steem
 from steem.blockchain import Blockchain
+from steembase.exceptions import AccountDoesNotExistsException
 from steemdata.helpers import timeit
 from steemdata.utils import json_expand, typify
 from toolz import merge_with, partition_all
@@ -39,11 +40,13 @@ def scrape_all_users(mongo, quick=False):
         usernames = list(get_usernames_batch(steem))
 
     for username in usernames:
-        update_account(mongo, username, load_extras=quick)
-        if not quick:
-            update_account_ops(mongo, username)
-        s.set_account_checkpoint(username, quick)
-        log.info('Updated @%s' % username)
+        # Some errors in golos blockchain
+        with suppress(AccountDoesNotExistsException):
+            update_account(mongo, username, load_extras=quick)
+            if not quick:
+                update_account_ops(mongo, username)
+            s.set_account_checkpoint(username, quick)
+            log.info('Updated @%s' % username)
 
     # this was the last batch
     if account_checkpoint and len(usernames) < 1000:

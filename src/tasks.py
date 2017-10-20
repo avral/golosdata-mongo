@@ -59,8 +59,8 @@ def override_steemd():
 
     if not _custom_node:
         steemd_nodes = [
-            'https://gtg.steem.house:8090',
-            'https://steemd.steemit.com',
+            # GOLOS node
+            'https://ws.golos.io/',
         ]
         set_shared_steemd_instance(Steemd(nodes=steemd_nodes))
         _custom_node = True
