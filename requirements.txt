@@ -1,7 +1,6 @@
-git+https://github.com/avral/golos-python
+git+https://github.com/GolosChain/golos-python
 steemdata
 celery[redis]
 pymongo
 tqdm
 funcy
-
