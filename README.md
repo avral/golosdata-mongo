@@ -12,11 +12,11 @@ With GolosData, you can query for any kind of information living on the GOLOS bl
 I highly recommend [RoboMongo](https://robomongo.org/) as a GUI utility for exploring GolosData.
 
 **Connection Details**
->Host: golosdata.mapala.net
-Port: 27017
-Database: golosdata
-Username: golosdata
-Password: golosdata
+>Host: golosdata.mapala.net    
+Port: 27017    
+Database: golosdata     
+Username: golosdata     
+Password: golosdata     
 
 
 ## Deployment
