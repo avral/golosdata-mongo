@@ -98,7 +98,7 @@ def scrape_operations(mongo):
 
         # insert operation
         with suppress(DuplicateKeyError):
-            mongo.Operations.insert_one(json_expand(typify(operation)))
+            mongo.Operations.insert(json_expand(typify(operation)), check_keys=False)
 
         # if this is a new block, checkpoint it, and schedule batch processing
         if operation['block_num'] != last_block:
