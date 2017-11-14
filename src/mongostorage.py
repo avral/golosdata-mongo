@@ -1,18 +1,30 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
+import os
 
 import pymongo
 from pymongo.errors import ConnectionFailure
 
-MONGO_HOST = 'localhost'
-MONGO_PORT = 27017
-DB_NAME = 'testdb'
+MONGO_HOST = os.getenv('MONGO_HOST', 'localhost')
+MONGO_PORT = os.getenv('MONGO_PORT', 27017)
+
+DB_NAME = os.getenv('MONGO_DB_NAME', 'golosdata')
+DB_USER = os.getenv('DB_USER', '')
+DB_PWD = os.getenv('DB_PWD', '')
 
 
 class MongoStorage(object):
-    def __init__(self, db_name=DB_NAME, host=MONGO_HOST, port=MONGO_PORT):
+    def __init__(
+        self,
+        db_name=DB_NAME,
+        host=MONGO_HOST,
+        port=MONGO_PORT,
+        user=DB_USER,
+        pwd=DB_PWD
+    ):
         try:
-            mongo_url = 'mongodb://%s:%s/%s' % (host, port, db_name)
+            mongo_url = 'mongodb://%s%s:%s/%s' % (
+                '{}:{}@'.format(user, pwd) if DB_USER else '',
+                host, port, db_name
+            )
             client = pymongo.MongoClient(mongo_url)
             self.db = client[db_name]
 
