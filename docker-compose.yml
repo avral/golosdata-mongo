@@ -1,0 +1,16 @@
+version: '3'
+services:
+  web:
+    build: .
+    links:
+    - redis
+    environment:
+    - MONGO_HOST
+    - MONGO_PORT
+    - MONGO_DB_NAME
+    - DB_USER
+    - DB_PWD
+    - GOLOS_NODE
+    - WORKER
+  redis:
+    image: redis
