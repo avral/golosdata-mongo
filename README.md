@@ -20,5 +20,26 @@ Password: golosdata
 
 
 ## Deployment
+For synchronization, it is recommended to use your own node.
+
+Run:
+```
+docker run -it -d --restart unless-stopped avral/golosdata-mongo:latest
+```
+
+## Configuration
+Golosdata now requires MongoDB.
+
+Additional parameters are set via the Docker ENV
+
+**Defaults**
+>MONGO_HOST: localhost       
+MONGO_PORT: 27017      
+MONGO_DB_NAME: golosdata     
+DB_USER: ''     
+DB_PWD: ''         
+GOLOS_NODE: https://ws.golos.io      
+WORKER: scrape_operations     
+
 Create a read-only user from createUser.mongo
 from mongodb shell when mongo first starts.
